@@ -1,1 +1,50 @@
+#In this SQL, I'm querying a database with multiple tables in it to quantify statistics about movies ratings, revenue and much more!
+
+--List all the movies and tv shows in alphabetical order.
+SELECT Title 
+FROM movie.IMDB 
+ORDER BY Title ASC; 
+
+--Show the movie with highest rating
+SELECT Movie_id,Title, Rating
+FROM movie.IMDB
+ORDER BY Rating DESC
+LIMIT 1; 
+
+--What are the genres of Inception 
+SELECT Title, genre, Movie_id
+FROM movie.IMDB AS rating
+INNER JOIN movie.genre AS genre 
+ON rating.Movie_id=genre.Movie_id
+WHERE Title LIKE 'Inception%'; 
+
+--What is the revenue and budget of Inception 
+SELECT IMDB.Title, earnings.Domestic, earnings.Worldwide, IMDB.Budget 
+FROM movie.earning as earnings
+INNER JOIN movie.IMDB as IMDB
+ON earnings.Movie_id=IMDB.Movie_id
+WHERE IMDB.Title LIKE 'Inception%'; 
+
+--Cheapest movie to make 
+SElECT Title, Budget 
+FROM movie.IMDB
+ORDER BY Budget ASC;
+
+--Highest earned movie worldwide in 2010 and its genre 
+SELECT IMDB.Title, earning.Worldwide, genre.genre 
+FROM movie.IMDB AS IMDB
+INNER JOIN movie.earning AS earning
+ON IMDB.Movie_id=earning.Movie_id
+INNER JOIN movie.genre AS genre
+ON earning.Movie_id=genre.Movie_id
+WHERE IMDB.Title LIKE '%2010)'
+ORDER BY earning.Worldwide DESC; 
+
+-- Highest earned movie
+SELECT IMDB.Title, earning.Worldwide
+FROM movie.IMDB as IMDB
+INNER JOIN movie.earning as earning 
+ON IMDB.Movie_id=earning.Movie_id
+ORDER BY Domestic DESC
+LIMIT 1; 
 
