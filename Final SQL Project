@@ -1,6 +1,6 @@
 #In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer in relation to their orders and media data
 
-#1.Show Customers (their full names, customer ID, and country) who are not in the US. (Hint: != or <> can be used to say "is not equal to").
+#1.Show Customers (their full names, customer ID, and country) who are not in the US.
 SELECT CustomerID, FirstName, LastName, Country
 FROM chinook.customers
 WHERE Country <> 'USA'; 
